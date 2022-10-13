@@ -29,6 +29,7 @@
 #include <QSettings>
 #include <QApplication>
 #include <QDir>
+#include <QDebug>
 #include <wrap/io_trimesh/export_ply.h>
 #include "miniz.h"
 

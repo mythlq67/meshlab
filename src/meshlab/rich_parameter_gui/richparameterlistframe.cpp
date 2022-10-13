@@ -130,11 +130,11 @@ RichParameterListFrame::iterator RichParameterListFrame::end()
 void RichParameterListFrame::toggleAdvancedParameters()
 {
 	if (areAdvancedParametersVisible) {
-		showHiddenFramePushButton->setText("▼");
+        showHiddenFramePushButton->setText("v");
 		showHiddenFramePushButton->setToolTip("Show advanced parameters");
 	}
 	else {
-		showHiddenFramePushButton->setText("▲");
+        showHiddenFramePushButton->setText("^");
 		showHiddenFramePushButton->setToolTip("Hide advanced parameters");
 	}
 	areAdvancedParametersVisible = !areAdvancedParametersVisible;
