@@ -201,6 +201,9 @@ public:
 	void setMeshModified(bool b = true);
 	static int io2mm(int single_iobit);
 
+    //List of conments for Ply file. --liuqing
+    std::vector<std::string> plyComments;
+
 	CMeshO cm;
 
 private:

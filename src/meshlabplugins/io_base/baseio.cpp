@@ -214,7 +214,14 @@ void BaseMeshIOPlugin::open(const QString &formatName, const QString &fileName, 
 		m.enable(mask);
 
 
-		int result = tri::io::ImporterPLY<CMeshO>::Open(m.cm, filename.c_str(), mask, cb);
+        // for ply comment read. --liuqing
+        tri::io::PlyInfo pi;
+        pi.cb = cb;
+        int result = tri::io::ImporterPLY<CMeshO>::Open(m.cm, filename.c_str(), pi);
+        mask=pi.mask;
+        m.plyComments = pi.comments;
+        //int result = tri::io::ImporterPLY<CMeshO>::Open(m.cm, filename.c_str(), mask, cb);
+
 		if (result != 0) // all the importers return 0 on success
 		{
 			if (tri::io::ImporterPLY<CMeshO>::ErrorCritical(result))
@@ -440,6 +447,9 @@ void BaseMeshIOPlugin::save(const QString &formatName, const QString &fileName, 
 				}
 			}
 		}
+
+        // read pi.comments from MeshModel --liuqing
+        pi.comments = m.plyComments;
 
 		int result = tri::io::ExporterPLY<CMeshO>::Save(m.cm, filename.c_str(), binaryFlag, pi, cb);
 		if (result != 0)
